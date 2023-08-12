@@ -31,7 +31,8 @@ int exec_cmd(char **argv, char *cmd)
 	else
 	{
 		waitpid(id, NULL, 0);
-		free(exe_cmd);
+		if (access(cmd, 0) != 0)
+			free(exe_cmd);
 		return (0);
 	}
 }
