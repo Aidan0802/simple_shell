@@ -24,8 +24,13 @@ int main(void)
 		cmd = av[0];
 
 		res = exec_cmd(av, cmd);
-		if (res == 2)
+		if (res == -2)
 			break;
+		else if (res >= 0)
+		{
+			free(buf);
+			exit(res);
+		}
 		free(buf);
 	}
 	free(buf);

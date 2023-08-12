@@ -4,24 +4,30 @@
  * exec_cmd - Executes commands
  * @cmd: Command to be executed
  * @argv: Argument vector address
- * Return: 0 (Success), 1 (Failed), 2 (Exit);
+ * Return: -1 (Success), -3 (Failed), -2 (Exit)
+ * exit_stat if provided.
  */
 
 int exec_cmd(char **argv, char *cmd)
 {
 	pid_t id;
-	char *exe_cmd;
+	char *exe_cmd, **envi = environ;
 
 	if (strcmp(cmd, "exit") == 0)
-		return (2);
+		return exit_cmd(argv[1]);
 
 	exe_cmd = get_path(cmd);
 	if (exe_cmd == NULL)
 	{
 		perror("./shell");
-		return (1);
+		return (-3);
 	}
-
+	if (strcmp(cmd, "env") == 0)
+		while (*envi)
+		{
+			printf("%s\n", *envi);
+			envi++;
+		}
 	id = fork();
 	if (id == 0)
 	{
@@ -33,6 +39,25 @@ int exec_cmd(char **argv, char *cmd)
 		waitpid(id, NULL, 0);
 		if (access(cmd, 0) != 0)
 			free(exe_cmd);
-		return (0);
+		return (-1);
 	}
+}
+
+/**
+ * exit_cmd - Exits shell.
+ * @cmd: Command.
+ * Return: Exit status.
+ */
+
+int exit_cmd(char *exit_val)
+{
+	int exit_stat;
+
+	if (exit_val)
+	{
+		exit_stat = atoi(exit_val);
+		return (exit_stat);
+	}
+	else
+		return (-2);
 }

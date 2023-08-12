@@ -9,8 +9,11 @@
 #include <string.h>
 #include <dirent.h>
 
-int _prompt(char **, char **);
-int exec_cmd(char **, char *);
+extern char **environ;
+
+int _prompt(char **argv, char **buf);
+int exec_cmd(char **argv, char *cmd);
 char *get_path(char *cmd);
+int exit_cmd(char *exit_val);
 
 #endif
