@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "../shell.h"
 
 /**
  * _getline - Gets entire line input
@@ -11,8 +11,17 @@
 
 int _getline(char **lineptr, size_t *n, FILE *stream)
 {
-	int count = 0;
-	char c;
+	size_t count = 0;
+	static size_t buf_pos = 0, buf_size = 0;
+	static char buf[BUF_SIZE];
+
+	if (buf_pos >= buf_size)
+	{
+		buf_size = read(fileno(stream), buf, BUF_SIZE);
+		buf_pos = 0;
+	}
+	if (buf_size == 0)
+		return (-1);
 
 	*lineptr = malloc(sizeof(char) * (*n));
 	if (!(*lineptr))
@@ -21,23 +30,12 @@ int _getline(char **lineptr, size_t *n, FILE *stream)
 		return (-1);
 	}
 
-	while ((c = fgetc(stream)) != EOF)
+	while (buf_pos < buf_size)
 	{
-		if (c == -1)
-		{
-			free(*lineptr);
-			return (-1);
-		}
-		(*lineptr)[count] = c;
+		(*lineptr)[count] = buf[buf_pos++];
 		count++;
-		if (c == '\n')
+		if (count >= (*n - 1) || ((*lineptr)[count - 1] == '\n'))
 			break;
-
-	}
-	if (count == 0)
-	{
-		free(*lineptr);
-		return (-1);
 	}
 	(*lineptr)[count] = '\0';
 	return (count);
