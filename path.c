@@ -15,15 +15,14 @@ char *get_path(char *cmd)
 
 	while (path)
 	{
-		size = strlen(path) + strlen(cmd);
-		s_path = malloc(sizeof(char) * size + 2);
-
 		if (access(cmd, 0) == 0)
 		{
 			free(p_cpy);
 			return (cmd);
 		}
 
+		size = strlen(path) + strlen(cmd);
+		s_path = malloc(sizeof(char) * size + 2);
 		sprintf(s_path, "%s/%s", path, cmd);
 		if (access(s_path, 0) == 0)
 		{
