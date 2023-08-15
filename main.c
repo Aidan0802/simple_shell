@@ -9,7 +9,7 @@
 int main(void)
 {
 	char *av[100], *buf = NULL, *cmd = NULL;
-	int run = 1, val, res;
+	int run = 1, val, res, _cd;
 
 	while (run)
 	{
@@ -17,6 +17,12 @@ int main(void)
 		if (val == 2)
 			break;
 		else if (val == 1)
+		{
+			free(buf);
+			continue;
+		}
+		_cd = _chdir(av);
+		if (_cd == 0)
 		{
 			free(buf);
 			continue;
