@@ -14,7 +14,7 @@ int exec_cmd(char **argv, char *cmd)
 	char *exe_cmd, **envi = environ;
 
 	if (strcmp(cmd, "exit") == 0)
-		return exit_cmd(argv[1]);
+		return (exit_cmd(argv[1]));
 
 	exe_cmd = get_path(cmd);
 	if (exe_cmd == NULL)
@@ -45,7 +45,7 @@ int exec_cmd(char **argv, char *cmd)
 
 /**
  * exit_cmd - Exits shell.
- * @cmd: Command.
+ * @exit_val: Exit value.
  * Return: Exit status.
  */
 
