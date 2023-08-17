@@ -15,11 +15,13 @@ int _prompt(char **av, char **buf)
 	char *tok;
 
 	*buf = NULL;
-
 	if (isatty(STDIN_FILENO))
+	{
 		printf("# ");
+		fflush(stdout);
+	}
 
-	end = getline(&(*buf), &max, stdin);
+	end = _getline(&(*buf), &max, stdin);
 	if (end == -1)
 	{
 		if (*buf[0] == '\0')
@@ -28,19 +30,20 @@ int _prompt(char **av, char **buf)
 			return (2);
 		}
 		else
+		{
 			return (2);
-
+		}
 	}
 
 	if (*buf[0] == '\n')
 		return (1);
 
-	tok = strtok(*buf, " \n");
+	tok = _strtok(*buf, " \n");
 
 	while (tok)
 	{
 		av[i++] = tok;
-		tok = strtok(NULL, " \n");
+		tok = _strtok(NULL, " \n");
 	}
 	av[i] = NULL;
 
