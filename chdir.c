@@ -35,7 +35,7 @@ int _chdir(char **av)
 			getcwd(prev, BUF_SIZE);
 			val = chdir(av[1]);
 			if (val == -1)
-				perror("chdir");
+				perror("./shell");
 			return (0);
 		}
 	}

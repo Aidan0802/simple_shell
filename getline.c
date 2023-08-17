@@ -12,7 +12,7 @@
 int _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	size_t count = 0;
-	static size_t buf_pos, buf_size;
+	static size_t buf_pos = 0, buf_size = 0;
 	char buf[BUF_SIZE];
 
 	if (buf_pos >= buf_size)
