@@ -11,5 +11,6 @@ int _setenv(char **, argv)
 	return (-1);
 
 }
-if
+if (strcmp(argv[0], "setenv") == 0)
+
 
