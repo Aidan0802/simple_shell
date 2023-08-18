@@ -1,4 +1,4 @@
 #include "shell.h"
 #include <stdio.h>
 /**
- * _setenv - set/unset
+ * _setenv - set/unset envronment
