@@ -8,4 +8,4 @@
 
 int _setenv(char **, argv)
 {
-	return
+	return ();
