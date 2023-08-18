@@ -1,5 +1,8 @@
 #include "shell.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 /**
  * _setenv - set/unset envronment variables
  * @argv: argument address
@@ -20,5 +23,9 @@ if (strcmp(argv[0], "setenv") == 0)
 	}
 	else
 	{
+		dprintf(fileno(stderr), "modify environment of variable.\n");
+		return (-1);
+	}
+}
 
 
