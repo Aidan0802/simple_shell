@@ -6,4 +6,4 @@
  * Return: 0 upon success or -1 upon failure
  */
 
-int _setenv(char  
+int _setenv(char **  
