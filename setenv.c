@@ -9,3 +9,4 @@
 int _setenv(char **, argv)
 {
 	return (-1);
+}
