@@ -12,6 +12,8 @@
 int _setenv(char **argv)
 {
 	if (argv[1] == NULL || argv[2] == NULL)
+	{
+		dprint(stderr, "could not find environment variable.\n");
 	return (-1);
 
 }
