@@ -3,4 +3,4 @@
 /**
  * _setenv - set/unset envronment variables
  * @argv: argument address
- * Return: 0 upon success
+ * Return: 0 upon success or -1
