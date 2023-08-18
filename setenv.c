@@ -9,8 +9,9 @@
  * Return: 0 upon success or -1 upon failure
  */
 
-int _setenv(char **, argv)
+int _setenv(char **argv)
 {
+	if (argv[1] == NULL || argv[2] == NULL)
 	return (-1);
 
 }
