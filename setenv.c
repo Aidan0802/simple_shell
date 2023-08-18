@@ -14,6 +14,11 @@ int _setenv(char **, argv)
 
 if (strcmp(argv[0], "setenv") == 0)
 { 
-	if (val != -1)
+	if (setenv(av,val,1) == 0)
+	{
+		return (0);
+	}
+	else
+	{
 
 
