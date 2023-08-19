@@ -1,5 +1,5 @@
 #include "shell.h"
-nclude <stdio.>
+clude <stdio.>
 #include <stdlib.h>
 #include <string.h>
 
