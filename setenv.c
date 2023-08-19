@@ -1,6 +1,6 @@
 #include "shell.h"
 lude <stdio.>
-clude <stdlib.h>
+lude <stdlib.h>
 #include <string.h>
 
 /**
