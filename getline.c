@@ -32,11 +32,11 @@ int _getline(char **lineptr, size_t *n, FILE *stream)
 
 	while (buf_pos < buf_size)
 	{
-		if (count >= (*n - 1) || ((*lineptr)[count - 1] == '\n'))
+		if (count >= (*n - 1) || ((*lineptr)[count] == '\n'))
 			break;
 		(*lineptr)[count] = buf[buf_pos++];
 		count++;
 	}
-	(*lineptr)[count] = buf[buf_pos++];
+	(*lineptr)[count] = '\0';
 	return (count);
 }
