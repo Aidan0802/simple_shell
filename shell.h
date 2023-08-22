@@ -21,5 +21,9 @@ int _getline(char **lineptr, size_t *n, FILE *stream);
 int _chdir(char **av);
 char *_strtok(char *str, const char *delim);
 int _setenv(char **argv);
+char *_strdup(char *str);
+int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
+int _strlen(char *s);
 
 #endif
