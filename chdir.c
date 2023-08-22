@@ -14,8 +14,8 @@ int _chdir(char **av)
 	char *home;
 	int val;
 
-	strcpy(temp, prev);
-	if (strcmp(av[0], "cd") == 0)
+	_strcpy(temp, prev);
+	if (_strcmp(av[0], "cd") == 0)
 	{
 		if (av[1] == NULL)
 		{
@@ -24,7 +24,7 @@ int _chdir(char **av)
 			chdir(home);
 			return (0);
 		}
-		if (strcmp(av[1], "-") == 0)
+		if (_strcmp(av[1], "-") == 0)
 		{
 			getcwd(prev, BUF_SIZE);
 			chdir(temp);

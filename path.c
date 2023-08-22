@@ -8,9 +8,9 @@
 
 char *get_path(char *cmd)
 {
-	const char *pathEnv = getenv("PATH");
-	char *p_cpy = strdup(pathEnv), *s_path;
-	char *path = strtok(p_cpy, ":\n");
+	char *pathEnv = getenv("PATH");
+	char *p_cpy = _strdup(pathEnv), *s_path;
+	char *path = _strtok(p_cpy, ":\n");
 	int size;
 
 	while (path)
@@ -21,7 +21,7 @@ char *get_path(char *cmd)
 			return (cmd);
 		}
 
-		size = strlen(path) + strlen(cmd);
+		size = _strlen(path) + _strlen(cmd);
 		s_path = malloc(sizeof(char) * size + 2);
 		sprintf(s_path, "%s/%s", path, cmd);
 		if (access(s_path, 0) == 0)
@@ -30,7 +30,7 @@ char *get_path(char *cmd)
 			return (s_path);
 		}
 		free(s_path);
-		path = strtok(NULL, ":\n");
+		path = _strtok(NULL, ":\n");
 	}
 	free(p_cpy);
 	return (NULL);
