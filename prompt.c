@@ -21,7 +21,7 @@ int _prompt(char **av, char **buf)
 		fflush(stdout);
 	}
 
-	end = _getline(&(*buf), &max, stdin);
+	end = getline(&(*buf), &max, stdin);
 	if (end == -1)
 	{
 		if (*buf[0] == '\0')
