@@ -13,7 +13,7 @@ int exec_cmd(char **argv, char *cmd)
 	pid_t id;
 	char *exe_cmd, **envi = environ;
 
-	if (strcmp(cmd, "exit") == 0)
+	if (_strcmp(cmd, "exit") == 0)
 		return (exit_cmd(argv[1]));
 
 	exe_cmd = get_path(cmd);
@@ -22,7 +22,7 @@ int exec_cmd(char **argv, char *cmd)
 		perror("./shell");
 		return (-3);
 	}
-	if (strcmp(cmd, "env") == 0)
+	if (_strcmp(cmd, "env") == 0)
 		while (*envi)
 		{
 			printf("%s\n", *envi);
