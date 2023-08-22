@@ -3,7 +3,6 @@
 /**
  * exec_cmd - Executes commands
  * @cmd: Command to be executed
- * @cmd_count: Command count.
  * @argv: Argument vector address
  * Return: -1 (Success), -3 (Failed), -2 (Exit)
  * exit_stat if provided.
@@ -21,7 +20,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count)
 	if (exe_cmd == NULL)
 	{
 		fprintf(stderr, "./shell: %d: %s: Not found\n", cmd_count, argv[0]);
-		return (-3);
+		exit(127);
 	}
 	if (strcmp(cmd, "env") == 0)
 		while (*envi)
