@@ -3,6 +3,7 @@
 /**
  * exec_cmd - Executes commands
  * @cmd: Command to be executed
+ * @cmd_count: Command count.
  * @argv: Argument vector address
  * Return: -1 (Success), -3 (Failed), -2 (Exit)
  * exit_stat if provided.
