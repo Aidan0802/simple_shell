@@ -14,11 +14,11 @@
 extern char **environ;
 
 int _prompt(char **argv, char **buf);
-int exec_cmd(char **argv, char *cmd);
+int exec_cmd(char **argv, char *cmd, int);
 char *get_path(char *cmd);
 int exit_cmd(char *exit_val);
 int _getline(char **lineptr, size_t *n, FILE *stream);
-int _chdir(char **av);
+int _chdir(char **av, int);
 char *_strtok(char *str, const char *delim);
 int _setenv(char **argv);
 char *_strdup(char *str);
