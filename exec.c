@@ -8,21 +8,21 @@
  * exit_stat if provided.
  */
 
-int exec_cmd(char **argv, char *cmd)
+int exec_cmd(char **argv, char *cmd, int cmd_count)
 {
 	pid_t id;
 	char *exe_cmd, **envi = environ;
 
-	if (_strcmp(cmd, "exit") == 0)
+	if (strcmp(cmd, "exit") == 0)
 		return (exit_cmd(argv[1]));
 
 	exe_cmd = get_path(cmd);
 	if (exe_cmd == NULL)
 	{
-		perror("./shell");
+		fprintf(stderr, "./shell: %d: %s: Not found\n", cmd_count, argv[0]);
 		return (-3);
 	}
-	if (_strcmp(cmd, "env") == 0)
+	if (strcmp(cmd, "env") == 0)
 		while (*envi)
 		{
 			printf("%s\n", *envi);

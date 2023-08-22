@@ -9,11 +9,12 @@
 int main(void)
 {
 	char *av[100], *buf = NULL, *cmd = NULL;
-	int run = 1, val, res, _cd, set;
+	int run = 1, val, res, _cd, set, cmd_count = 0;
 
 	while (run)
 	{
 		val = _prompt(av, &buf);
+		cmd_count++;
 		if (val == 2)
 			break;
 		else if (val == 1)
@@ -27,7 +28,7 @@ int main(void)
 			free(buf);
 			continue;
 		}
-		_cd = _chdir(av);
+		_cd = _chdir(av, cmd_count);
 		if (_cd == 0)
 		{
 			free(buf);
@@ -35,7 +36,7 @@ int main(void)
 		}
 		cmd = av[0];
 
-		res = exec_cmd(av, cmd);
+		res = exec_cmd(av, cmd, cmd_count);
 		if (res == -2)
 			break;
 		else if (res >= 0)

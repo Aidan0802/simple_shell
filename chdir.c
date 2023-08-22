@@ -6,7 +6,7 @@
  * Return: 1 (not dir) 0 (Success);
  */
 
-int _chdir(char **av)
+int _chdir(char **av, int cmd_count)
 {
 
 	static char prev[BUF_SIZE];
@@ -35,7 +35,7 @@ int _chdir(char **av)
 			getcwd(prev, BUF_SIZE);
 			val = chdir(av[1]);
 			if (val == -1)
-				perror("./shell");
+				fprintf(stderr, "./shell: %d: %s: Not found\n", cmd_count, av[1]);
 			return (0);
 		}
 	}
