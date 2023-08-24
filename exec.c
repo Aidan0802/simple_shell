@@ -34,7 +34,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 	id = fork();
 	if (id == 0)
 	{
-		execve(exe_cmd, argv, NULL);
+		status = execve(exe_cmd, argv, NULL);
 		exit(1);
 	}
 	else
