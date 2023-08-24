@@ -45,6 +45,6 @@ int _prompt(char **av, char **buf)
 		tok = strtok(NULL, " \n");
 	}
 	av[i] = NULL;
-
+	fflush(stdout);
 	return (0);
 }
