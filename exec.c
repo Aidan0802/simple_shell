@@ -16,7 +16,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 	char *exe_cmd, **envi = environ;
 	int status;
 
-	if (strcmp(cmd, "exit") == 0)
+	if (_strcmp(cmd, "exit") == 0)
 		exit_cmd(argv[1], &(*buf));
 
 	exe_cmd = get_path(cmd);
@@ -25,7 +25,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 		fprintf(stderr, "./hsh: %d: %s: not found\n", cmd_count, argv[0]);
 		return (127);
 	}
-	if (strcmp(cmd, "env") == 0)
+	if (_strcmp(cmd, "env") == 0)
 		while (!*envi)
 		{
 			printf("%s\n", *envi);
