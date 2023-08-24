@@ -17,7 +17,7 @@ int _prompt(char **av, char **buf)
 	*buf = NULL;
 	if (isatty(STDIN_FILENO))
 	{
-		printf("# ");
+		printf("#");
 		fflush(stdout);
 	}
 
