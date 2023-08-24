@@ -9,8 +9,8 @@
 char *get_path(char *cmd)
 {
 	char *pathEnv = getenv("PATH");
-	char *p_cpy = strdup(pathEnv), *s_path;
-	char *path = strtok(p_cpy, ":\n");
+	char *p_cpy = _strdup(pathEnv), *s_path;
+	char *path = _strtok(p_cpy, ":\n");
 	int size;
 
 	if (!path)
@@ -33,7 +33,7 @@ char *get_path(char *cmd)
 			return (s_path);
 		}
 		free(s_path);
-		path = strtok(NULL, ":\n");
+		path = _strtok(NULL, ":\n");
 	}
 	free(p_cpy);
 	return (NULL);
