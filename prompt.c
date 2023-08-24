@@ -21,6 +21,7 @@ int _prompt(char **av, char **buf)
 		fflush(stdout);
 	}
 
+	fflush(stdout);
 	end = getline(&(*buf), &max, stdin);
 	if (end == -1)
 	{
@@ -45,6 +46,5 @@ int _prompt(char **av, char **buf)
 		tok = strtok(NULL, " \n");
 	}
 	av[i] = NULL;
-	fflush(stdout);
 	return (0);
 }
