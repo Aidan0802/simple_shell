@@ -26,7 +26,6 @@ int _prompt(char **av, char **buf)
 	{
 		if (*buf[0] == '\0')
 		{
-			_putchar('\n');
 			return (2);
 		}
 		else
