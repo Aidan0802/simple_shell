@@ -14,6 +14,7 @@ int _prompt(char **av, char **buf)
 	size_t max = 100;
 	char *tok;
 
+	*buf = NULL;
 	if (isatty(STDIN_FILENO))
 	{
 		_putchar('#'), _putchar(' ');
@@ -22,13 +23,7 @@ int _prompt(char **av, char **buf)
 	end = getline(&(*buf), &max, stdin);
 	if (end == -1)
 	{
-		if (*buf[0] == '\0')
-		{
-			_putchar('\n');
-			return (2);
-		}
-		else
-			return (2);
+		return (2);
 	}
 	if (*buf[0] == '\n')
 		return (1);
