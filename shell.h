@@ -14,9 +14,9 @@
 extern char **environ;
 
 int _prompt(char **argv, char **buf);
-int exec_cmd(char **argv, char *cmd, int);
+int exec_cmd(char **argv, char *cmd, int, char **);
 char *get_path(char *cmd);
-int exit_cmd(char *exit_val);
+int exit_cmd(char *exit_val, char **buf);
 int _getline(char **lineptr, size_t *n, FILE *stream);
 int _chdir(char **av, int);
 char *_strtok(char *str, const char *delim);
