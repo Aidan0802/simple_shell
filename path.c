@@ -13,6 +13,9 @@ char *get_path(char *cmd)
 	char *path = _strtok(p_cpy, ":\n");
 	int size;
 
+	if (!path)
+		return (NULL);
+
 	while (path)
 	{
 		if (access(cmd, 0) == 0)

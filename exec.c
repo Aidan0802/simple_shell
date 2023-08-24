@@ -13,6 +13,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 {
 	pid_t id;
 	char *exe_cmd, **envi = environ;
+	int status;
 
 	if (strcmp(cmd, "exit") == 0)
 		exit_cmd(argv[1], &(*buf));
@@ -32,14 +33,16 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 	id = fork();
 	if (id == 0)
 	{
-		execvp(exe_cmd, argv);
+		execve(exe_cmd, argv, NULL);
 		exit(1);
 	}
 	else
 	{
-		waitpid(id, NULL, 0);
+		waitpid(id, &status, 0);
 		if (access(cmd, 0) != 0)
 			free(exe_cmd);
+		if (WIFEXITED(status))
+			return WEXITSTATUS(status);
 		return (-1);
 	}
 }
