@@ -36,7 +36,7 @@ int _chdir(char **av, int cmd_count)
 			getcwd(prev, BUF_SIZE);
 			val = chdir(av[1]);
 			if (val == -1)
-				fprintf(stderr, "./shell: %d: %s: Not found\n", cmd_count, av[1]);
+				fprintf(stderr, "./hsh: %d: %s: not found\n", cmd_count, av[1]);
 			return (0);
 		}
 	}

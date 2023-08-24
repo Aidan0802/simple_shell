@@ -20,11 +20,11 @@ int exec_cmd(char **argv, char *cmd, int cmd_count)
 	exe_cmd = get_path(cmd);
 	if (exe_cmd == NULL)
 	{
-		fprintf(stderr, "./shell: %d: %s: Not found\n", cmd_count, argv[0]);
+		fprintf(stderr, "./hsh: %d: %s: not found\n", cmd_count, argv[0]);
 		exit(127);
 	}
 	if (strcmp(cmd, "env") == 0)
-		while (*envi)
+		while (!*envi)
 		{
 			printf("%s\n", *envi);
 			envi++;
