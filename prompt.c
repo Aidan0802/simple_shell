@@ -41,6 +41,8 @@ int _prompt(char **av, char **buf)
 		av[i++] = tok;
 		tok = strtok(NULL, " \n");
 	}
+	if (i == 0)
+		return (1);
 	av[i] = NULL;
 	return (0);
 }
