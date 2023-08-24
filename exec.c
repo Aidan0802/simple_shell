@@ -26,7 +26,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 		return (127);
 	}
 	if (_strcmp(cmd, "env") == 0)
-		while (!*envi)
+		while (*envi)
 		{
 			printf("%s\n", *envi);
 			envi++;
