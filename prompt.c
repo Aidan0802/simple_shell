@@ -38,12 +38,12 @@ int _prompt(char **av, char **buf)
 	if (*buf[0] == '\n')
 		return (1);
 
-	tok = _strtok(*buf, " \n");
+	tok = strtok(*buf, " \n");
 
 	while (tok)
 	{
 		av[i++] = tok;
-		tok = _strtok(NULL, " \n");
+		tok = strtok(NULL, " \n");
 	}
 	av[i] = NULL;
 
