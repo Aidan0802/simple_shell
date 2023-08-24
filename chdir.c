@@ -2,7 +2,8 @@
 
 /**
  * _chdir - Changes directory
- * @av : Address of argumetns
+ * @av: Address of argumetns
+ * @cmd_count: Command count
  * Return: 1 (not dir) 0 (Success);
  */
 

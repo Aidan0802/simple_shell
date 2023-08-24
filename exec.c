@@ -5,6 +5,7 @@
  * @cmd: Command to be executed
  * @cmd_count: Amount of commands.
  * @argv: Argument vector address
+ * @buf: Address of buffer
  * Return: -1 (Success), -3 (Failed), -2 (Exit)
  * exit_stat if provided.
  */
@@ -42,7 +43,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 		if (access(cmd, 0) != 0)
 			free(exe_cmd);
 		if (WIFEXITED(status))
-			return WEXITSTATUS(status);
+			return (WEXITSTATUS(status));
 		return (-1);
 	}
 }
@@ -50,6 +51,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 /**
  * exit_cmd - Exits shell.
  * @exit_val: Exit value.
+ * @buf: Address to buffer
  * Return: Exit status.
  */
 
