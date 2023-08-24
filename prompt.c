@@ -10,17 +10,15 @@
 
 int _prompt(char **av, char **buf)
 {
-	int i = 0, end;
+	int i = 0, end = 0;
 	size_t max = 100;
 	char *tok;
 
-	*buf = NULL;
 	if (isatty(STDIN_FILENO))
 	{
 		_putchar('#'), _putchar(' ');
 		fflush(stdout);
 	}
-
 	end = getline(&(*buf), &max, stdin);
 	if (end == -1)
 	{

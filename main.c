@@ -9,7 +9,7 @@
 int main(void)
 {
 	char *av[100], *buf = NULL, *cmd = NULL;
-	int run = 1, res = 0, val, _cd, set, cmd_count = 0;
+	int run = 1, res = 0, val = 0, _cd = 0, set = 0, cmd_count = 0;
 
 	while (run)
 	{
