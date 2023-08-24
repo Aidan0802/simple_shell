@@ -9,7 +9,7 @@
 int main(void)
 {
 	char *av[100], *buf = NULL, *cmd = NULL;
-	int run = 1, val, res, _cd, set, cmd_count = 0;
+	int run = 1, val, res = 0, _cd, set, cmd_count = 0;
 
 	while (run)
 	{
@@ -35,16 +35,9 @@ int main(void)
 			continue;
 		}
 		cmd = av[0];
-		res = exec_cmd(av, cmd, cmd_count);
-		if (res == -2)
-			break;
-		else if (res >= 0)
-		{
-			free(buf);
-			exit(res);
-		}
+		res = exec_cmd(av, cmd, cmd_count, &buf);
 		free(buf);
 	}
 	free(buf);
-	return (0);
+	return (res);
 }

@@ -9,19 +9,19 @@
  * exit_stat if provided.
  */
 
-int exec_cmd(char **argv, char *cmd, int cmd_count)
+int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 {
 	pid_t id;
 	char *exe_cmd, **envi = environ;
 
 	if (strcmp(cmd, "exit") == 0)
-		return (exit_cmd(argv[1]));
+		exit_cmd(argv[1], &(*buf));
 
 	exe_cmd = get_path(cmd);
 	if (exe_cmd == NULL)
 	{
 		fprintf(stderr, "./hsh: %d: %s: not found\n", cmd_count, argv[0]);
-		exit(127);
+		return (127);
 	}
 	if (strcmp(cmd, "env") == 0)
 		while (!*envi)
@@ -50,15 +50,19 @@ int exec_cmd(char **argv, char *cmd, int cmd_count)
  * Return: Exit status.
  */
 
-int exit_cmd(char *exit_val)
+int exit_cmd(char *exit_val, char **buf)
 {
 	int exit_stat;
 
 	if (exit_val)
 	{
 		exit_stat = atoi(exit_val);
-		return (exit_stat);
+		free(*buf);
+		exit(exit_stat);
 	}
 	else
-		return (-2);
+	{
+		free(*buf);
+		exit(0);
+	}
 }
