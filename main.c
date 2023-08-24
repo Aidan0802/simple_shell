@@ -35,7 +35,6 @@ int main(void)
 			continue;
 		}
 		cmd = av[0];
-
 		res = exec_cmd(av, cmd, cmd_count);
 		if (res == -2)
 			break;

@@ -21,25 +21,21 @@ int _prompt(char **av, char **buf)
 		fflush(stdout);
 	}
 
-	fflush(stdin);
 	end = getline(&(*buf), &max, stdin);
 	if (end == -1)
 	{
 		if (*buf[0] == '\0')
 		{
+			_putchar('\n');
 			return (2);
 		}
 		else
-		{
 			return (2);
-		}
 	}
-
 	if (*buf[0] == '\n')
 		return (1);
 
 	tok = strtok(*buf, " \n");
-
 	while (tok)
 	{
 		av[i++] = tok;

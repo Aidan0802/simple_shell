@@ -32,7 +32,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count)
 	id = fork();
 	if (id == 0)
 	{
-		execve(exe_cmd, argv, NULL);
+		execvp(exe_cmd, argv);
 		exit(1);
 	}
 	else
