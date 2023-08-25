@@ -20,7 +20,7 @@ int _prompt(char **av, char **buf)
 		_putchar('#'), _putchar(' ');
 		fflush(stdout);
 	}
-	end = _getline(&(*buf), &max, stdin);
+	end = getline(&(*buf), &max, stdin);
 	if (end == -1)
 	{
 		return (2);
