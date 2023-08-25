@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <ctype.h>
 
 /**
  * exec_cmd - Executes commands
@@ -59,9 +60,22 @@ int exit_cmd(char *exit_val, char **buf)
 {
 	int exit_stat;
 
-	if (exit_val)
+	if (exit_val != NULL)
 	{
+		if (!isdigit(*exit_val))
+		{
+			fprintf(stderr, "./hsh: 1: exit: illegal number: %s\n", exit_val);
+			free(*buf);
+			exit(2);
+		}
+		
 		exit_stat = atoi(exit_val);
+		if (exit_stat < 0)
+		{
+			fprintf(stderr, "./hsh: 1: exit: illegal number: %s\n", exit_val);
+			free(*buf);
+			exit(2);
+		}
 		free(*buf);
 		exit(exit_stat);
 	}
