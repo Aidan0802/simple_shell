@@ -27,6 +27,12 @@ int main(void)
 			_alias(av), free(buf);
 			continue;
 		}
+		if (strchr(*av, ';'))
+		{
+			handle_commands(buf, cmd_count); 
+			free(buf);
+			continue;
+		}
 		set = _setenv(av);
 		if (set == 0)
 		{

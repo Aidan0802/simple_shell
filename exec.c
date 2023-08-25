@@ -35,14 +35,14 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 	id = fork();
 	if (id == 0)
 	{
-		status = execvp(exe_cmd, argv);
+		status = execve(exe_cmd, argv, NULL);
 		exit(1);
 	}
 	else
 	{
 		waitpid(id, &status, 0);
-		if (access(argv[1], F_OK) != 0)
-			exit_cmd("2", &(*buf));
+		/*if (access(argv[1], F_OK) != 0)
+			exit_cmd("2", &(*buf));*/
 		if (access(cmd, 0) != 0)
 			free(exe_cmd);
 		if (WIFEXITED(status))
