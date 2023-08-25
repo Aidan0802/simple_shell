@@ -41,11 +41,13 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 	else
 	{
 		waitpid(id, &status, 0);
+		if (access(argv[1], F_OK) != 0)
+			exit_cmd("2", &(*buf));
 		if (access(cmd, 0) != 0)
 			free(exe_cmd);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
-		return (-1);
+		return (0);
 	}
 }
 
@@ -68,7 +70,7 @@ int exit_cmd(char *exit_val, char **buf)
 			free(*buf);
 			exit(2);
 		}
-		
+
 		exit_stat = atoi(exit_val);
 		if (exit_stat < 0)
 		{
