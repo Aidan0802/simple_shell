@@ -1,11 +1,11 @@
 #include "shell.h"
-
 /**
  * main - Simple shell
  *
  * Return: 0 (Success), error (ERRNO)
  */
-
+size_t alias_count = 0;
+Alias aliases[100];
 int main(void)
 {
 	char *av[100], *buf = NULL, *cmd = NULL;
@@ -44,5 +44,21 @@ int main(void)
 		free(buf);
 	}
 	free(buf);
+	cleanup_aliases();
 	return (res);
+}
+/**
+ * cleanup_aliases - free memory allocated
+ * Return: void
+ */
+
+void cleanup_aliases(void)
+{
+	size_t i;
+
+	for (i = 0; i < alias_count; i++)
+	{
+		free(aliases[i].name);
+		free(aliases[i].value);
+	}
 }

@@ -6,12 +6,10 @@
  * Return: void
  */
 
-Alias aliases[100];
-char *tok[2];
-int alias_count = 0;
 
 void _alias(char **av)
 {
+	char *tok[2];
 	tok[0] = strtok(av[1], "=");
 	tok[1] = strtok(NULL, "\0");
 
@@ -38,7 +36,7 @@ void _alias(char **av)
 
 void display_aliases(void)
 {
-	int i;
+	size_t i;
 
 	for (i = 0; i < alias_count; i++)
 		printf("%s='%s'\n", aliases[i].name, aliases[i].value);
@@ -63,6 +61,8 @@ void add_or_mod(const char *name, const char *value)
 	{
 		if (alias_count < 100)
 		{
+			free(aliases[alias_count].name);
+			free(aliases[alias_count].value);
 			aliases[alias_count].name = strdup(name);
 			aliases[alias_count].value = strdup(value);
 			alias_count++;
@@ -80,7 +80,7 @@ void add_or_mod(const char *name, const char *value)
 
 Alias *find_alias(const char *name)
 {
-	int i;
+	size_t i;
 
 	for (i = 0; i < alias_count; i++)
 		if (strcmp(aliases[i].name, name) == 0)
