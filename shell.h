@@ -43,5 +43,9 @@ Alias *find_alias(const char *name);
 void display_aliases(void);
 void add_or_mod(const char *name, const char *value);
 void _alias(char **argv);
+void cleanup_aliases(void);
+
+extern Alias aliases[100];
+extern size_t alias_count;
 
 #endif
