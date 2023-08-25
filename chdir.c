@@ -29,8 +29,8 @@ int _chdir(char **av, int cmd_count)
 		if (_strcmp(av[1], "-") == 0)
 		{
 			getcwd(prev, BUF_SIZE);
-			printf("%s\n", temp);
-			fflush(stdout);
+			if (getenv("OLDPWD"))
+				return (0);
 			chdir(temp);
 			return (0);
 		}
