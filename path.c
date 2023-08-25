@@ -8,7 +8,7 @@
 
 char *get_path(char *cmd)
 {
-	char *pathEnv = getenv("PATH");
+	char *pathEnv = getenv("PATH"), newString[100];
 	char *p_cpy = _strdup(pathEnv), *s_path;
 	char *path = strtok(p_cpy, ":\n"), *alias_;
 	int size;
@@ -18,7 +18,11 @@ char *get_path(char *cmd)
 
 	alias_ = alias_check(cmd);
 	if (alias_)
-		cmd = alias_;
+	{
+		newString[0] = '/';
+		strcpy(newString + 1, alias_);
+		cmd = newString;
+	}
 
 	while (path)
 	{
@@ -51,7 +55,12 @@ char *alias_check(char *cmd)
 	for (i = 0; i < alias_count; i++)
 		if (strcmp(aliases[i].name, cmd) == 0)
 		{
-			return (&aliases->value[i]);
+			if (access(&aliases->value[i], F_OK) == 0)
+				return (&aliases->value[i]);
+			else
+			{
+				return (&aliases->value[i]);
+			}
 		}
 	return (NULL);
 }
