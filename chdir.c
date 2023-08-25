@@ -21,7 +21,8 @@ int _chdir(char **av, int cmd_count)
 		if (av[1] == NULL)
 		{
 			getcwd(prev, BUF_SIZE);
-			fflush(stdout);
+			if (!home)
+				return (0);
 			chdir(home);
 			return (0);
 		}
@@ -41,7 +42,6 @@ int _chdir(char **av, int cmd_count)
 				fprintf(stderr, "./hsh: %d: %s: Not found\n", cmd_count, av[1]);
 				return (0);
 			}
-			fflush(stdout);
 			return (0);
 		}
 	}
