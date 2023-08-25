@@ -27,4 +27,21 @@ char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
 int _putchar(int c);
 
+/**
+ * struct als - Alias struct
+ * @name: Alias name
+ * @value: Alias value
+ */
+
+typedef struct als
+{
+	char *name;
+	char *value;
+} Alias;
+
+Alias *find_alias(const char *name);
+void display_aliases(void);
+void add_or_mod(const char *name, const char *value);
+void _alias(char **argv);
+
 #endif

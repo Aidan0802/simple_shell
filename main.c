@@ -22,6 +22,11 @@ int main(void)
 			free(buf);
 			continue;
 		}
+		if (_strcmp(av[0], "alias") == 0)
+		{
+			_alias(av), free(buf);
+			continue;
+		}
 		set = _setenv(av);
 		if (set == 0)
 		{
