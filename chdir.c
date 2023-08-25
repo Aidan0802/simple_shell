@@ -12,7 +12,7 @@ int _chdir(char **av, int cmd_count)
 
 	static char prev[BUF_SIZE];
 	char temp[BUF_SIZE];
-	char *home;
+	char *home = getenv("HOME");
 	int val;
 
 	_strcpy(temp, prev);
@@ -20,14 +20,15 @@ int _chdir(char **av, int cmd_count)
 	{
 		if (av[1] == NULL)
 		{
-			home = getenv("HOME");
 			getcwd(prev, BUF_SIZE);
+			printf("%s\n", home);
 			chdir(home);
 			return (0);
 		}
 		if (_strcmp(av[1], "-") == 0)
 		{
 			getcwd(prev, BUF_SIZE);
+			printf("%s\n", temp);
 			chdir(temp);
 			return (0);
 		}
@@ -36,7 +37,11 @@ int _chdir(char **av, int cmd_count)
 			getcwd(prev, BUF_SIZE);
 			val = chdir(av[1]);
 			if (val == -1)
+			{
 				fprintf(stderr, "./hsh: %d: %s: Not found\n", cmd_count, av[1]);
+				return (0);
+			}
+			printf("%s\n", av[1]);
 			return (0);
 		}
 	}
