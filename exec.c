@@ -66,7 +66,7 @@ int exit_cmd(char *exit_val, char **buf)
 	{
 		if (!isdigit(*exit_val))
 		{
-			fprintf(stderr, "./hsh: 1: exit: illegal number: %s\n", exit_val);
+			fprintf(stderr, "./hsh: 1: exit: Illegal number: %s\n", exit_val);
 			free(*buf);
 			exit(2);
 		}
@@ -74,7 +74,7 @@ int exit_cmd(char *exit_val, char **buf)
 		exit_stat = atoi(exit_val);
 		if (exit_stat < 0)
 		{
-			fprintf(stderr, "./hsh: 1: exit: illegal number: %s\n", exit_val);
+			fprintf(stderr, "./hsh: 1: exit: Illegal number: %s\n", exit_val);
 			free(*buf);
 			exit(2);
 		}
