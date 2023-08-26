@@ -48,7 +48,7 @@ int _prompt(char **av, char **buf, char **copy)
 
 void remove_comments(char *str)
 {
-    char *commentPos = strchr(str, '#');
+    char *commentPos = strstr(str, " #");
 
     if (commentPos != NULL)
     {
