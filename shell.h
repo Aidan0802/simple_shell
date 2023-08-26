@@ -15,7 +15,7 @@ extern char **environ;
 
 int _prompt(char **argv, char **buf);
 int exec_cmd(char **argv, char *cmd, int, char **);
-char *get_path(char *cmd);
+char *get_path(char *cmd, char *);
 int exit_cmd(char *exit_val, char **buf);
 int _getline(char **lineptr, size_t *n, FILE *stream);
 int _chdir(char **av, int);
@@ -45,7 +45,7 @@ void add_or_mod(const char *name, const char *value);
 void _alias(char **argv);
 void cleanup_aliases(void);
 char *alias_check(char *);
-int handle_commands(char *, int);
+int handle_commands(char **, int);
 
 extern Alias aliases[100];
 extern size_t alias_count;
