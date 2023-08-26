@@ -6,9 +6,9 @@
  * Return: Path of command.
  */
 
-char *get_path(char *cmd)
+char *get_path(char *cmd, char *newString)
 {
-	char *pathEnv = getenv("PATH"), *newString = malloc(100);
+	char *pathEnv = getenv("PATH");
 	char *p_cpy = strdup(pathEnv), *s_path;
 	char *path = strtok(p_cpy, ":\n"), *alias_;
 	int size;
