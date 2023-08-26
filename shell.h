@@ -13,7 +13,7 @@
 
 extern char **environ;
 
-int _prompt(char **argv, char **buf, char **copy);
+int _prompt(char **argv, char **buf, char **copy, int);
 int exec_cmd(char **argv, char *cmd, int, char **);
 char *get_path(char *cmd, char *);
 char *get_path_from_environ(); 
@@ -49,6 +49,8 @@ char *alias_check(char *);
 int handle_commands(char *, int, char **);
 void remove_comments(char *str);
 void process_alias_input(char **input);
+void handle_variables(char **str, int);
+void replace_variable(char **str, const char *var, const char *replacement);
 
 extern Alias aliases[100];
 extern size_t alias_count;

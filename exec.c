@@ -15,7 +15,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 {
 	pid_t id;
 	char *exe_cmd, **envi = environ, newString[100];
-	int status, i;
+	int status;
 
 	if (_strcmp(cmd, "exit") == 0)
 		exit_cmd(argv[1], &(*buf));
@@ -49,8 +49,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 			exit_cmd("2", &(*buf));*/
 		/*if (access(cmd, 0) != 0)
 			free(exe_cmd);*/
-		i = (WEXITSTATUS(status));
-		return (i);
+		return (WEXITSTATUS(status));
 	}
 }
 

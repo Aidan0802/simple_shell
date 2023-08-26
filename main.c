@@ -13,7 +13,7 @@ int main(void)
 
 	while (run)
 	{
-		val = _prompt(av, &buf, &copy);
+		val = _prompt(av, &buf, &copy, res);
 		cmd_count++;
 		if (val == 2)
 			break;
@@ -43,6 +43,7 @@ int main(void)
 		cmd = av[0];
 		res = exec_cmd(av, cmd, cmd_count, &copy);
 		free(buf), free(copy);
+
 	}
 	free(buf);
 	cleanup_aliases();
