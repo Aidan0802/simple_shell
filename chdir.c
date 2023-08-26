@@ -11,7 +11,7 @@ int _chdir(char **av, int cmd_count)
 {
 
 static char prev[BUF_SIZE];
-char temp[BUF_SIZE], *path = getenv("OLDPWD");
+char temp[BUF_SIZE], *path = NULL;
 char *home = getenv("HOME");
 int val;
 
@@ -29,12 +29,11 @@ if (_strcmp(av[0], "cd") == 0)
 	if (_strcmp(av[1], "-") == 0)
 	{
 		getcwd(prev, BUF_SIZE);
-		if (strcmp(path, "\0") == 0)
+		if ((path = get_path_from_environ()) == NULL) 
 		{
-			printf("%s\n", prev);
-			return (0);
+			printf("%s\n", getenv("PWD"));
 		}
-		printf("%s\n", temp);
+		printf("%s\n", getenv("PWD"));
 		chdir(temp);
 		return (0);
 	}
