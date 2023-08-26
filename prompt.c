@@ -29,6 +29,12 @@ int _prompt(char **av, char **buf, char **copy)
 		return (1);
 	*copy = strdup(*buf);
 	remove_comments(*copy);
+	if (*copy[0] == '\0')
+	{
+		free(*copy);
+		*copy = NULL;
+		return (1);
+	}
 	tok = strtok(*copy, " \n");
 	while (tok)
 	{
