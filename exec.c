@@ -15,27 +15,31 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 {
 	pid_t id;
 	char *exe_cmd, **envi = environ, newString[100];
-	int status;
+	int status, i;
 
 	if (_strcmp(cmd, "exit") == 0)
 		exit_cmd(argv[1], &(*buf));
 
+	if (_strcmp(cmd, "env") == 0)
+	{
+		while (*envi)
+		{
+			printf("%s\n", *envi);
+			envi++;
+			return (0);
+		}
+	}
 	exe_cmd = get_path(cmd, newString);
 	if (exe_cmd == NULL)
 	{
 		fprintf(stderr, "./hsh: %d: %s: not found\n", cmd_count, argv[0]);
 		return (127);
 	}
-	if (_strcmp(cmd, "env") == 0)
-		while (*envi)
-		{
-			printf("%s\n", *envi);
-			envi++;
-		}
+
 	id = fork();
 	if (id == 0)
 	{
-		status = execve(exe_cmd, argv, NULL);
+		status = execvp(exe_cmd, argv);
 		exit(1);
 	}
 	else
@@ -45,9 +49,8 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 			exit_cmd("2", &(*buf));*/
 		/*if (access(cmd, 0) != 0)
 			free(exe_cmd);*/
-		if (WIFEXITED(status))
-			return (WEXITSTATUS(status));
-		return (0);
+		i = (WEXITSTATUS(status));
+		return (i);
 	}
 }
 
