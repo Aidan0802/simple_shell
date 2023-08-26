@@ -8,8 +8,8 @@
 
 char *get_path(char *cmd)
 {
-	char *pathEnv = getenv("PATH"), newString[100];
-	char *p_cpy = _strdup(pathEnv), *s_path;
+	char *pathEnv = getenv("PATH"), *newString = malloc(100);
+	char *p_cpy = strdup(pathEnv), *s_path;
 	char *path = strtok(p_cpy, ":\n"), *alias_;
 	int size;
 
