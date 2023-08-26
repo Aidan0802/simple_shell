@@ -14,13 +14,13 @@
 int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 {
 	pid_t id;
-	char *exe_cmd, **envi = environ, newString[100];
+	char *exe_cmd, **envi = environ; /*newString[100];*/
 	int status;
 
 	if (_strcmp(cmd, "exit") == 0)
 		exit_cmd(argv[1], &(*buf));
 
-	exe_cmd = get_path(cmd, newString);
+	exe_cmd = get_path(cmd);
 	if (exe_cmd == NULL)
 	{
 		fprintf(stderr, "./hsh: %d: %s: not found\n", cmd_count, argv[0]);
