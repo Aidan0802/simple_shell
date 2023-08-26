@@ -115,6 +115,8 @@ void handle_variables(char **str, int exit_status)
 {
     char pid_str[16];
     char exit_status_str[16]; 
+    char *copy_str = strdup(*str);
+    char *dollar_sign = strchr(copy_str, '$');
   
     if (strstr(*str, "$?")) {
         sprintf(exit_status_str, "%d", exit_status);
@@ -126,4 +128,22 @@ void handle_variables(char **str, int exit_status)
         sprintf(pid_str, "%d", pid);
         replace_variable(str, "$$", pid_str);
     }
+    while (dollar_sign) {
+        char *var_name_start = dollar_sign + 1;
+        char *var_name_end = var_name_start;
+        char *env_value;
+        while (*var_name_end && (*var_name_end != ' ' && *var_name_end != '\n')) {
+            var_name_end++;
+        }
+        if (var_name_start != var_name_end) {
+            *var_name_end = '\0';
+            env_value = getenv(var_name_start);
+            if (env_value) {
+                replace_variable(str, dollar_sign, env_value);
+            }
+        }
+        dollar_sign = strchr(var_name_end, '$');
+    }
+
+    free(copy_str);
 }
