@@ -39,7 +39,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 	id = fork();
 	if (id == 0)
 	{
-		status = execvp(exe_cmd, argv);
+		status = execve(exe_cmd, argv, NULL);
 		exit(1);
 	}
 	else
@@ -49,7 +49,7 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 			exit_cmd("2", &(*buf));*/
 		/*if (access(cmd, 0) != 0)
 			free(exe_cmd);*/
-		return (WEXITSTATUS(status));
+		return (0);
 	}
 }
 
