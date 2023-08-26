@@ -27,6 +27,11 @@ int _prompt(char **av, char **buf)
 	}
 	if (*buf[0] == '\n')
 		return (1);
+	if (strchr(*buf, ';'))
+	{
+		handle_commands(&(*buf), 1);
+		return (1);
+	}	
 
 	tok = strtok(*buf, " \n");
 	while (tok)
