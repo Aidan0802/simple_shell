@@ -14,13 +14,13 @@
 int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 {
 	pid_t id;
-	char *exe_cmd, **envi = environ; /*newString[100];*/
+	char *exe_cmd, **envi = environ, newString[100];
 	int status;
 
 	if (_strcmp(cmd, "exit") == 0)
 		exit_cmd(argv[1], &(*buf));
 
-	exe_cmd = get_path(cmd);
+	exe_cmd = get_path(cmd, newString);
 	if (exe_cmd == NULL)
 	{
 		fprintf(stderr, "./hsh: %d: %s: not found\n", cmd_count, argv[0]);
@@ -42,9 +42,9 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 	{
 		waitpid(id, &status, 0);
 		/*if (access(argv[1], F_OK) != 0)
-			exit_cmd("2", &(*buf));
+			exit_cmd("2", &(*buf));*/
 		if (access(cmd, 0) != 0)
-			free(exe_cmd);*/
+			free(exe_cmd);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 		return (0);
