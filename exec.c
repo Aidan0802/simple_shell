@@ -47,8 +47,8 @@ int exec_cmd(char **argv, char *cmd, int cmd_count, char **buf)
 		waitpid(id, &status, 0);
 		/*if (access(argv[1], F_OK) != 0)
 			exit_cmd("2", &(*buf));*/
-		/*if (access(cmd, 0) != 0)
-			free(exe_cmd);*/
+		if (access(cmd, 0) != 0)
+			free(exe_cmd);
 		return (0);
 	}
 }
