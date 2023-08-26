@@ -77,7 +77,7 @@ void process_alias_input(char *input)
 		
 		if (tok)
 		{
-			tok = _strtok(NULL, " ");
+			tok = _strtok(NULL, " \n");
 			while (tok)
 			{
 				_alias(tok);
