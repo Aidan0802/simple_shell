@@ -23,14 +23,14 @@ char *get_path(char *cmd, char *newString)
 		strcpy(newString + 1, alias_);
 		cmd = newString;
 	}
+	if (access(cmd, 0) == 0)
+	{
+		free(p_cpy);
+		return (cmd);
+	}
 
 	while (path)
 	{
-		if (access(cmd, 0) == 0)
-		{
-			free(p_cpy);
-			return (cmd);
-		}
 
 		size = _strlen(path) + _strlen(cmd);
 		s_path = malloc(sizeof(char) * size + 2);

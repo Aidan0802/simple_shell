@@ -4,12 +4,13 @@ int handle_commands(char **commands, int cmd_count)
 {
     int exit_status = 0;
     char *token = strtok(*commands, ";");
-    char *argv[100];
-    int argc = 0;
     char *cmd_token = strtok(token, " \n");
+    char *argv[100];
+    int argc;
 
     while (token) 
     {
+		argc = 0;
 		cmd_token = strtok(token, " \n");
 		while (cmd_token != NULL)
 		{
