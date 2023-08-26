@@ -28,6 +28,7 @@ int _prompt(char **av, char **buf, char **copy)
 	if (*buf[0] == '\n')
 		return (1);
 	*copy = strdup(*buf);
+	remove_comments(*copy);
 	tok = strtok(*copy, " \n");
 	while (tok)
 	{
@@ -38,4 +39,19 @@ int _prompt(char **av, char **buf, char **copy)
 		return (1);
 	av[i] = NULL;
 	return (0);
+}
+/**
+ * remove_comments - Removes anything after #
+ * @str: Input String
+ * Return: void
+ */
+
+void remove_comments(char *str)
+{
+    char *commentPos = strchr(str, '#');
+
+    if (commentPos != NULL)
+    {
+        *commentPos = '\0';
+    }
 }
