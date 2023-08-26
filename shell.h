@@ -48,7 +48,7 @@ void cleanup_aliases(void);
 char *alias_check(char *);
 int handle_commands(char *, int, char **);
 void remove_comments(char *str);
-void process_alias_input(char *input);
+void process_alias_input(char **input);
 
 extern Alias aliases[100];
 extern size_t alias_count;

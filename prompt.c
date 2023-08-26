@@ -28,9 +28,8 @@ int _prompt(char **av, char **buf, char **copy)
 	if (*buf[0] == '\n')
 		return (1);
 	*copy = strdup(*buf);
-	process_alias_input(*copy);
 	remove_comments(*copy);
-	if (*copy[0] == '\0')
+	if (*copy[0] == '\0' )
 	{
 		free(*copy);
 		*copy = NULL;
@@ -45,6 +44,12 @@ int _prompt(char **av, char **buf, char **copy)
 	if (i == 0)
 		return (1);
 	av[i] = NULL;
+	process_alias_input(av);
+	if (av[0] == NULL )
+	{
+		free(*copy);
+		return (1);
+	}
 	return (0);
 }
 /**
@@ -68,25 +73,22 @@ void remove_comments(char *str)
 		*commentPos = '\0';
 	}
 }
-void process_alias_input(char *input)
+void process_alias_input(char **input)
 {
-	if (strncmp(input, "alias", 5) == 0)
+	if (strcmp(input[0], "alias") == 0)
 	{
-		char *copy = strdup(input);
-		char *tok = _strtok(copy, " \n");
-		
-		if (tok)
+		if (input[1])
 		{
-			tok = _strtok(NULL, " \n");
-			while (tok)
+			int i = 1;
+
+			while (input[i])
 			{
-				_alias(tok);
-				tok = _strtok(NULL, " \n");
+				_alias(input[i]);
+				i++;
 			}
 		}else
-			_alias(tok);
-
-		free(copy);
-		input[0] = '\0';
+			_alias(input[0]);
+		input[0] = NULL;
+		return;
 	}
 }

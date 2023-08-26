@@ -11,11 +11,10 @@ void _alias(char *av)
 {
 	char *tok[2];
 
-	printf("%s\n", av);
 	tok[0] = strtok(av, "=");
-	tok[1] = strtok(NULL, "\0");
-
-	if (av == NULL)
+	tok[1] = strtok(NULL, "");
+	
+	if (strcmp(tok[0], "alias") == 0)
 	{
 		display_aliases();
 	}
