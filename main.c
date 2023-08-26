@@ -22,11 +22,6 @@ int main(void)
 			free(buf);
 			continue;
 		}
-		if (_strcmp(av[0], "alias") == 0)
-		{
-			_alias(av), free(copy); free(buf);
-			continue;
-		}
 		if (strchr(buf, ';'))
 		{
 			handle_commands(&(*buf), cmd_count, &copy);

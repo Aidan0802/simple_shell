@@ -7,13 +7,15 @@
  */
 
 
-void _alias(char **av)
+void _alias(char *av)
 {
 	char *tok[2];
-	tok[0] = strtok(av[1], "=");
+
+	printf("%s\n", av);
+	tok[0] = strtok(av, "=");
 	tok[1] = strtok(NULL, "\0");
 
-	if (av[1] == NULL)
+	if (av == NULL)
 	{
 		display_aliases();
 	}
@@ -61,8 +63,6 @@ void add_or_mod(const char *name, const char *value)
 	{
 		if (alias_count < 100)
 		{
-			free(aliases[alias_count].name);
-			free(aliases[alias_count].value);
 			aliases[alias_count].name = strdup(name);
 			aliases[alias_count].value = strdup(value);
 			alias_count++;

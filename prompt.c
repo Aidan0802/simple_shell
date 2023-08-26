@@ -28,6 +28,7 @@ int _prompt(char **av, char **buf, char **copy)
 	if (*buf[0] == '\n')
 		return (1);
 	*copy = strdup(*buf);
+	process_alias_input(*copy);
 	remove_comments(*copy);
 	if (*copy[0] == '\0')
 	{
@@ -65,5 +66,27 @@ void remove_comments(char *str)
 	if (commentPos != NULL)
 	{
 		*commentPos = '\0';
+	}
+}
+void process_alias_input(char *input)
+{
+	if (strncmp(input, "alias", 5) == 0)
+	{
+		char *copy = strdup(input);
+		char *tok = _strtok(copy, " \n");
+		
+		if (tok)
+		{
+			tok = _strtok(NULL, " ");
+			while (tok)
+			{
+				_alias(tok);
+				tok = _strtok(NULL, " \n");
+			}
+		}else
+			_alias(tok);
+
+		free(copy);
+		input[0] = '\0';
 	}
 }
