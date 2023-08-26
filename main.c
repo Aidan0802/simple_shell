@@ -8,12 +8,12 @@ size_t alias_count = 0;
 Alias aliases[100];
 int main(void)
 {
-	char *av[100], *buf = NULL, *cmd = NULL;
+	char *av[100], *buf = NULL, *cmd = NULL, *copy = NULL;
 	int run = 1, res = 0, val = 0, _cd = 0, set = 0, cmd_count = 0;
 
 	while (run)
 	{
-		val = _prompt(av, &buf);
+		val = _prompt(av, &buf, &copy);
 		cmd_count++;
 		if (val == 2)
 			break;
@@ -24,30 +24,30 @@ int main(void)
 		}
 		if (_strcmp(av[0], "alias") == 0)
 		{
-			_alias(av), free(buf);
+			_alias(av), free(copy); free(buf);
 			continue;
 		}
 		if (strchr(buf, ';'))
 		{
-			handle_commands(&buf, cmd_count);
-			free(buf);
+			handle_commands(&(*buf), cmd_count, &copy);
+			free(buf), free(copy);
 			continue;
 		}	
 		set = _setenv(av);
 		if (set == 0)
 		{
-			free(buf);
+			free(buf), free(copy);
 			continue;
 		}
 		_cd = _chdir(av, cmd_count);
 		if (_cd == 0)
 		{
-			free(buf);
+			free(buf), free(copy);
 			continue;
 		}
 		cmd = av[0];
-		res = exec_cmd(av, cmd, cmd_count, &buf);
-		free(buf);
+		res = exec_cmd(av, cmd, cmd_count, &copy);
+		free(buf), free(copy);
 	}
 	free(buf);
 	cleanup_aliases();

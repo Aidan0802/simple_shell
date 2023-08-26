@@ -8,7 +8,7 @@
  * Return: 0 (Success), 1 (Failed) 2 (Exit)
  */
 
-int _prompt(char **av, char **buf)
+int _prompt(char **av, char **buf, char **copy)
 {
 	int i = 0, end = 0;
 	size_t max = 100;
@@ -27,8 +27,8 @@ int _prompt(char **av, char **buf)
 	}
 	if (*buf[0] == '\n')
 		return (1);
-
-	tok = strtok(*buf, " \n");
+	*copy = strdup(*buf);
+	tok = strtok(*copy, " \n");
 	while (tok)
 	{
 		av[i++] = tok;
